@@ -50,13 +50,14 @@ class Screen_CharacterSelection (tkinter.Frame):
         
         for character in self.roster.character_list:
             tkinter.Radiobutton(text = character.name).grid(row = row_num, column = 0)
-            tkinter.Label(text = character.hit_points).grid(row = row_num, column = 2)
-            tkinter.Label(text = character.dexterity).grid(row = row_num, column = 3)
-            tkinter.Label(text = character.strength).grid(row = row_num, column = 4)
             imageSmall = tkinter.PhotoImage(file="images/" + character.small_image)
             w = tkinter.Label(self, image = imageSmall)
             w.photo = imageSmall
             w.grid(row = row_num, column = 1)
+            tkinter.Label(text = character.hit_points).grid(row = row_num, column = 2)
+            tkinter.Label(text = character.dexterity).grid(row = row_num, column = 3)
+            tkinter.Label(text = character.strength).grid(row = row_num, column = 4)
+
             row_num += 1
         
 
