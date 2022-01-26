@@ -48,8 +48,11 @@ class Screen_CharacterSelection (tkinter.Frame):
         tkinter.Label(text = "Strength").grid(row = 0, column = 4)
         row_num = 1
         
+        self.character = tkinter.StringVar()
+        self.character.set(None)
+
         for character in self.roster.character_list:
-            tkinter.Radiobutton(text = character.name).grid(row = row_num, column = 0)
+            tkinter.Radiobutton(text = character.name, variable = self.character, value = character.name).grid(row = row_num, column = 0)
             tkinter.Label(text = character.hit_points).grid(row = row_num, column = 2)
             tkinter.Label(text = character.dexterity).grid(row = row_num, column = 3)
             tkinter.Label(text = character.strength).grid(row = row_num, column = 4)
