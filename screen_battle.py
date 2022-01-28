@@ -39,6 +39,8 @@ class Screen_Battle (tkinter.Frame):
         w.grid(row = 2, column = 1)
         tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS").grid(row = 3, column = 1)
         
+
+        
     def attack_clicked(self):
         ''' This method is called when the user presses the "Attack" button.
             
