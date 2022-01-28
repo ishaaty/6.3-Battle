@@ -30,7 +30,7 @@ class Screen_CharacterSelection (tkinter.Frame):
         
         ########
 
-        Here is some sample code for including an image on a page:   (char is a Character object)
+        Here is some sample code for including an image on a :   (char is a Character object)
             
             imageSmall = tkinter.PhotoImage(file="images/" + char.small_image);
             w= tkinter.Label (self,
@@ -40,36 +40,37 @@ class Screen_CharacterSelection (tkinter.Frame):
 
             w.grid (ADD PARAMETERS HERE)
         '''
+
+        self.character = tkinter.StringVar()
+        self.character.set(None)
         self.character_index = tkinter.StringVar()
         self.character_index.set(None)
 
-        tkinter.Label(text = "Hit Points").grid(row = 0, column = 2)
-        tkinter.Label(text = "Dexterity").grid(row = 0, column = 3)
-        tkinter.Label(text = "Strength").grid(row = 0, column = 4)
+        tkinter.Label(self, text = "Hit Points").grid(row = 0, column = 2)
+        tkinter.Label(self, text = "Dexterity").grid(row = 0, column = 3)
+        tkinter.Label(self, text = "Strength").grid(row = 0, column = 4)
+        tkinter.Button(self, text = "Character Selected!", command=self.selected_clicked, bg = "red").grid(row = 5, column = 4)
         row_num = 1
         
-        self.character = tkinter.StringVar()
-        self.character.set(None)
 
         for character in self.roster.character_list:
-            tkinter.Radiobutton(text = character.name, variable = self.character, value = character.name).grid(row = row_num, column = 0)
-            tkinter.Label(text = character.hit_points).grid(row = row_num, column = 2)
-            tkinter.Label(text = character.dexterity).grid(row = row_num, column = 3)
-            tkinter.Label(text = character.strength).grid(row = row_num, column = 4)
+            tkinter.Radiobutton(self,text = character.name, variable = self.character_index, value = row_num - 1).grid(row = row_num, column = 0)
             imageSmall = tkinter.PhotoImage(file="images/" + character.small_image)
             w = tkinter.Label(self, image = imageSmall)
             w.photo = imageSmall
             w.grid(row = row_num, column = 1)
-            tkinter.Label(text = character.hit_points).grid(row = row_num, column = 2)
-            tkinter.Label(text = character.dexterity).grid(row = row_num, column = 3)
-            tkinter.Label(text = character.strength).grid(row = row_num, column = 4)
-
+            tkinter.Label(self, text = character.hit_points).grid(row = row_num, column = 2)
+            tkinter.Label(self, text = character.dexterity).grid(row = row_num, column = 3)
+            tkinter.Label(self, text = character.strength).grid(row = row_num, column = 4)
             row_num += 1
+            
         
 
-       
  
     def selected_clicked(self):
         ''' This method is to be called when the "Character Selected!" button is clicked. 
             Notice that it passes self.character_index back to the callback method. '''         
         self.callback_on_selected(self.character_index.get())
+
+
+        
