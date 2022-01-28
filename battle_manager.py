@@ -41,7 +41,7 @@ class BattleManager (object):
             The method manages the assignment of the player and computer properties (Character objects), 
             and then starts the Prepare for Battle screen.
             '''        
-        selected_char_index = int (selected_char_index)
+        selected_char_index = int(selected_char_index)
         
         # Gets the player's chosen Character
         self.player = self.character_roster.get_and_remove_character(selected_char_index)
