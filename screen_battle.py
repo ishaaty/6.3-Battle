@@ -30,14 +30,14 @@ class Screen_Battle (tkinter.Frame):
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
         w.grid(row = 2, column = 0)
-        tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS").grid(row = 2, column = 0)
+        tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS").grid(row = 3, column = 0)
 
         tkinter.Label(self, text = "Computer").grid(row = 1, column = 1)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player2.large_image)
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
         w.grid(row = 2, column = 1)
-        tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS").grid(row = 2, column = 0)
+        tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS").grid(row = 3, column = 1)
         
     def attack_clicked(self):
         ''' This method is called when the user presses the "Attack" button.
