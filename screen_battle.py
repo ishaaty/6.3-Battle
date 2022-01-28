@@ -30,14 +30,16 @@ class Screen_Battle (tkinter.Frame):
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
         w.grid(row = 4, column = 0)
-        tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS").grid(row = 5, column = 0)
+        self.player1_hp_lbl = tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS")
+        self.player1_hp_lbl.grid(row = 5, column = 0)
 
         tkinter.Label(self, text = "Computer").grid(row = 3, column = 1)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player2.large_image)
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
         w.grid(row = 4, column = 1)
-        tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS").grid(row = 5, column = 1)
+        self.player2_hp_lbl = tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS")
+        self.player2_hp_lbl.grid(row = 5, column = 1)
         
     def attack_clicked(self):
         ''' This method is called when the user presses the "Attack" button.
@@ -51,10 +53,21 @@ class Screen_Battle (tkinter.Frame):
             To remove a widget, use the destroy() method. For example:
     
                 self.button.destroy()   
-        '''        
-        #
-        # TO DO
-        #
+        '''  
+
+        result1 = self.player1.attack(self.player2)
+        result2 = self.player2.attack(self.player1)
+        player1_attack_lbl = tkinter.Label(self, text = result1)
+        player1_attack_lbl.grid(row = 0, column = 1)
+        player2_attack_lbl = tkinter.Label(self, text = result2)
+        player2_attack_lbl.grid(row = 1, column = 1)
+
+
+        if self.player1_max_hp <= 0:
+            tkinter.Label(self, text = f"{self.player2.name} is victorious!", fg = "red").grid(row = 2, column = 1)
+        elif self.player2_max_hp <= 0:
+            tkinter.Label(self, text = f"{self.player1.name} is victorious!", fg = "red").grid(row = 2, column = 1)    
+
                                             
     def exit_clicked(self):
         ''' This method is called when the Exit button is clicked. 
