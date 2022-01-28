@@ -23,21 +23,21 @@ class Screen_Battle (tkinter.Frame):
         This method creates all of the (initial) widgets for the battle page.
         '''
 
-        tkinter.Button(self, text = "Attack", bg = "red").grid(row = 0, column = 0)
+        tkinter.Button(self, text = "Attack", bg = "red", command = self.attack_clicked).grid(row = 0, rowspan = 3, column = 0)
 
-        tkinter.Label(self, text = "You").grid(row = 1, column = 0)
+        tkinter.Label(self, text = "You").grid(row = 3, column = 0)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player1.large_image)
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
-        w.grid(row = 2, column = 0)
-        tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS").grid(row = 3, column = 0)
+        w.grid(row = 4, column = 0)
+        tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS").grid(row = 5, column = 0)
 
-        tkinter.Label(self, text = "Computer").grid(row = 1, column = 1)
+        tkinter.Label(self, text = "Computer").grid(row = 3, column = 1)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player2.large_image)
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
-        w.grid(row = 2, column = 1)
-        tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS").grid(row = 3, column = 1)
+        w.grid(row = 4, column = 1)
+        tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS").grid(row = 5, column = 1)
         
     def attack_clicked(self):
         ''' This method is called when the user presses the "Attack" button.
