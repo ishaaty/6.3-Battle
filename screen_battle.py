@@ -76,9 +76,17 @@ class Screen_Battle (tkinter.Frame):
         self.player2_attack_lbl["text"] = result2
         
 
+<<<<<<< HEAD
         # displays victor + adds exit bttn when a player dies
         if self.player1.hit_points <= 0:
             self.attackBttn.destroy() 
+=======
+        self.player1_hp_lbl["text"] = f"{self.player1.hit_points}/{self.player1_max_hp} HPS"
+        self.player2_hp_lbl["text"] = f"{self.player2.hit_points}/{self.player2_max_hp} HPS"
+
+
+        if self.player1_max_hp <= 0:
+>>>>>>> eff9f90ba4d7205739a423b32423124d4b302b30
             tkinter.Label(self, text = f"{self.player2.name} is victorious!", fg = "red").grid(row = 2, column = 1)
             tkinter.Button(self, text = "Exit", bg = "red", command = self.exit_clicked).grid(row = 0, rowspan = 3, column = 0)
         elif self.player2.hit_points <= 0:
@@ -95,4 +103,4 @@ class Screen_Battle (tkinter.Frame):
             
             
             
-            
+        
