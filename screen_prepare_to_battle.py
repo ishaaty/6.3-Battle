@@ -19,7 +19,7 @@ class Screen_PrepareToBattle (tkinter.Frame):
         '''
         This method creates all of the widgets the prepare to battle page.
         '''
-
+        # displays users info
         tkinter.Label(self, text = "You").grid(row = 0, column = 0)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player1.large_image)
         w = tkinter.Label(self, image = imageLarge)
@@ -31,6 +31,7 @@ class Screen_PrepareToBattle (tkinter.Frame):
         tkinter.Label(self, text = f"{self.player1.strength} Strength").grid(row = 4, column = 0)
 
 
+        # displays computer info
         tkinter.Label(self, text = "Computer").grid(row = 0, column = 1)
         image_large = tkinter.PhotoImage(file="images/" + self.player2.large_image)
         w = tkinter.Label(self, image = image_large)
@@ -41,6 +42,7 @@ class Screen_PrepareToBattle (tkinter.Frame):
         tkinter.Label(self, text = f"{self.player2.dexterity} Dexterity").grid(row = 3, column = 1)
         tkinter.Label(self, text = f"{self.player2.strength} Strength").grid(row = 4, column = 1)
 
+        # button to proceed to next screen
         tkinter.Button(self, command = self.commence_battle_clicked, text = "Commence Battle!", bg = "red").grid(row = 4, column = 2)
 
         
