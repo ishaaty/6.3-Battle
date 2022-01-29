@@ -71,6 +71,9 @@ class Screen_Battle (tkinter.Frame):
         result2 = self.player2.attack(self.player1)
         self.player2_attack_lbl["text"] = result2
 
+        self.player1_hp_lbl["text"] = f"{self.player1.hit_points}/{self.player1_max_hp} HPS"
+        self.player2_hp_lbl["text"] = f"{self.player2.hit_points}/{self.player2_max_hp} HPS"
+
 
         if self.player1_max_hp <= 0:
             tkinter.Label(self, text = f"{self.player2.name} is victorious!", fg = "red").grid(row = 2, column = 1)
@@ -86,4 +89,4 @@ class Screen_Battle (tkinter.Frame):
             
             
             
-            
+        
