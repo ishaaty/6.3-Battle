@@ -22,30 +22,31 @@ class Screen_Battle (tkinter.Frame):
         '''
         This method creates all of the (initial) widgets for the battle page.
         '''
+        # attack button 
+        self.attackBttn = tkinter.Button(self, text = "Attack", bg = "red", command = self.attack_clicked)
+        self.attackBttn.grid(row = 0, rowspan = 3, column = 0)
 
-        tkinter.Button(self, text = "Attack", bg = "red", command = self.attack_clicked).grid(row = 0, rowspan = 3, column = 0)
-
+        # grids player 1 image/hitpoints and attack lbl
         self.player1_attack_lbl = tkinter.Label(self, text = "")
         self.player1_attack_lbl.grid(row = 0, column = 1)
-
-        self.player2_attack_lbl = tkinter.Label(self, text = "")
-        self.player2_attack_lbl.grid(row = 1, column = 1)
-
-
-        tkinter.Label(self, text = "You").grid(row = 3, column = 0)
+        tkinter.Label(self, text = "You", font = "bold").grid(row = 3, column = 0)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player1.large_image)
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
         w.grid(row = 4, column = 0)
-        self.player1_hp_lbl = tkinter.Label(self, text = f"{self.player1_max_hp}/{self.player1_max_hp} HPS")
+        self.player1_hp_lbl = tkinter.Label(self, text = f"{self.player1.hit_points}/{self.player1_max_hp} HPS")
         self.player1_hp_lbl.grid(row = 5, column = 0)
 
-        tkinter.Label(self, text = "Computer").grid(row = 3, column = 1)
+
+        # grids player 2 image/hitpoints and attack lbl
+        self.player2_attack_lbl = tkinter.Label(self, text = "")
+        self.player2_attack_lbl.grid(row = 1, column = 1)
+        tkinter.Label(self, text = "Computer", font = "bold").grid(row = 3, column = 1)
         imageLarge = tkinter.PhotoImage(file="images/" + self.player2.large_image)
         w = tkinter.Label(self, image = imageLarge)
         w.photo = imageLarge
         w.grid(row = 4, column = 1)
-        self.player2_hp_lbl = tkinter.Label(self, text = f"{self.player2_max_hp}/{self.player2_max_hp} HPS")
+        self.player2_hp_lbl = tkinter.Label(self, text = f"{self.player2.hit_points}/{self.player2_max_hp} HPS")
         self.player2_hp_lbl.grid(row = 5, column = 1)
         
 
@@ -63,19 +64,27 @@ class Screen_Battle (tkinter.Frame):
     
                 self.button.destroy()   
         '''  
-
+        # calls attack for both players
         result1 = self.player1.attack(self.player2)
-        self.player1_attack_lbl["text"] = result1
-
-
         result2 = self.player2.attack(self.player1)
+
+        # updates lbls for both players
+        self.player1_hp_lbl["text"] = f"{self.player1.hit_points}/{self.player1_max_hp} HPS"
+        self.player1_attack_lbl["text"] = result1
+        
+        self.player2_hp_lbl["text"] = f"{self.player2.hit_points}/{self.player2_max_hp} HPS"
         self.player2_attack_lbl["text"] = result2
+        
 
-
-        if self.player1_max_hp <= 0:
+        # displays victor + adds exit bttn when a player dies
+        if self.player1.hit_points <= 0:
+            self.attackBttn.destroy() 
             tkinter.Label(self, text = f"{self.player2.name} is victorious!", fg = "red").grid(row = 2, column = 1)
-        elif self.player2_max_hp <= 0:
+            tkinter.Button(self, text = "Exit", bg = "red", command = self.exit_clicked).grid(row = 0, rowspan = 3, column = 0)
+        elif self.player2.hit_points <= 0:
+            self.attackBttn.destroy() 
             tkinter.Label(self, text = f"{self.player1.name} is victorious!", fg = "red").grid(row = 2, column = 1)    
+            tkinter.Button(self, text = "Exit", bg = "red", command = self.exit_clicked).grid(row = 0, rowspan = 3, column = 0)
 
                                             
     def exit_clicked(self):
