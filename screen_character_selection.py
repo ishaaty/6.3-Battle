@@ -46,6 +46,7 @@ class Screen_CharacterSelection (tkinter.Frame):
         self.character_index = tkinter.StringVar()
         self.character_index.set(None)
 
+        # prints headers + button
         tkinter.Label(self, text = "Hit Points").grid(row = 0, column = 2)
         tkinter.Label(self, text = "Dexterity").grid(row = 0, column = 3)
         tkinter.Label(self, text = "Strength").grid(row = 0, column = 4)
@@ -54,11 +55,16 @@ class Screen_CharacterSelection (tkinter.Frame):
         
 
         for character in self.roster.character_list:
+            # grids radiobutton as character name
             tkinter.Radiobutton(self,text = character.name, variable = self.character_index, value = row_num - 1).grid(row = row_num, column = 0)
+
+            # saves + grids image
             imageSmall = tkinter.PhotoImage(file="images/" + character.small_image)
             w = tkinter.Label(self, image = imageSmall)
             w.photo = imageSmall
             w.grid(row = row_num, column = 1)
+            
+            # grids stats
             tkinter.Label(self, text = character.hit_points).grid(row = row_num, column = 2)
             tkinter.Label(self, text = character.dexterity).grid(row = row_num, column = 3)
             tkinter.Label(self, text = character.strength).grid(row = row_num, column = 4)
@@ -73,4 +79,3 @@ class Screen_CharacterSelection (tkinter.Frame):
         self.callback_on_selected(self.character_index.get())
 
 
-        
